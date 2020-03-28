@@ -1,13 +1,12 @@
 
 
-
+import selenium
 #in the name of who made humans.....
 import speech_recognition as sr
 import random
 import wikipedia
 from googletrans import Translator
 import os
-from playsound import playsound
 import random
 from persiantools.jdatetime import JalaliDate
 import khayyam
