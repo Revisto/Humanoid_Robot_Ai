@@ -13,8 +13,8 @@ TTS("در خدمتم ","fa")
 Status="Done"
 while True:
     Status=WakeUp(TimeMustWakeUp,Time_Now_For_WakeUp(),Status)
-    RimindReminders(ReturnAllReminders(),Time_Now_For_WakeUp())
-    try:
+    #RimindReminders(ReturnAllReminders(),Time_Now_For_WakeUp())
+    if True:
         text = CompleteVoiceAnalyse()
         if "بیدار" in text:
             TimeMustWakeUp=TimeMustWakeUp(text)
@@ -33,8 +33,8 @@ while True:
                         text= AnalyseVoice(audio)
                     except Exception as Error:
                         print(Error)
-    except Exception as Error:
-        print(Error)
+"""    except Exception as Error:
+        print(Error)"""
 
 
 """

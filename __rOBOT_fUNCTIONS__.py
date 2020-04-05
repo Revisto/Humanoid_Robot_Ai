@@ -603,14 +603,14 @@ def DATA_function(text,PricesInfo):
                 [["هوا","دما","باد"],[],[[Temperature,text]]],
                 [["جک","جوک"],[],[[Joke]]],
                 [["معکوس","بر عکس"],[],[[Joke]]],
-"""                reverse_True_and_False
-                calculating_game()"""
+                #reverse_True_and_False
+                #calculating_game()
                 [["سرچ","جست و جو","جستجو"],[],[[Search,str(text)]]],
                 [["پادکست"],[],[[MusicPlay,(random.choice(["Podcast"]))+"()"+text]]],
-                [["شعر","اخوان","دکلمه","باغ بی برگی"],[],[[MusicPlay,(random.choice(["BaghBiBargi"]))+"()"+text]]]
-                [["سرود"],[],[[Anthems,text]]]
-                """[["دارو اضافه"],[],[[AddToReminder]]],
-                [["دارو حذف"],[],[[DeleteFromReminder]]],"""
+                [["شعر","اخوان","دکلمه","باغ بی برگی"],[],[[MusicPlay,(random.choice(["BaghBiBargi"]))+"()"+text]]],
+                [["سرود"],[],[[Anthems,text]]],
+                [["دارو اضافه"],[],[[AddToReminder]]],
+                [["دارو حذف"],[],[[DeleteFromReminder]]],
                 ]
 def Analyse(text,DATA):
     Done=False
@@ -688,20 +688,19 @@ def calculating_game():
             level+=1
         else:
             TTS("غلطه","fa")
-calculating_game()
 
-def Anthems(name="nothing"):
-    list_en=["Poland","Russia","Soviet","United kingdom","Brazil","Canada","France","Germany","Iran","Italy"]
+def Anthems(text="nothing"):
+    list_en=["Poland","Russia","Soviet","United Kingdom","Brazil","Canada","France","Germany","Iran","Italy"]
     list_fa=[["لهستان"],["روسیه"],["شوروی"],["اینگیلیس","انگلیس","انگلستان","بریتانیا"],["برزیل"],["کانادا"],["فرانسه"],["آلمان","المان"],["ایران"],["ایتالیا"]]
-    while name not in list_fa or name!="خروج":
-        Index=random.randint(0,9)
-        TTS(random.choice(["متاسفانه متوجهِ منظورتون نِمیشم","متاسفانه متوجه نَشدم","شرمنده متوجه منظورتون نِمیشم","شرمنده متوجهِ نشدم","من دارم یاد میگیرم و متوجهِ منظورتون نِمیشم","متاسفانه نفهمیدم"]),"fa")
-        name=CompleteVoiceAnalyse()
-    else:
-        for i in list_fa:
-            if name in i:
-                MusicPlay(list_en[list_fa.index(name)]+()+text)
-                return 0
+    for Box in list_fa:
+        for Little_Box in Box:
+
+            if Little_Box in text:
+                MusicPlay(list_en[list_fa.index(Box)]+"()"+text)
+                return 
+    
+    TTS(random.choice(["پیدا نکردم","تو انبار نداریم"]),"fa")
+
 """
  ██████╗  ███████╗ ██╗   ██╗ ██╗ ███████╗ ████████╗  ██████╗  
  ██╔══██╗ ██╔════╝ ██║   ██║ ██║ ██╔════╝ ╚══██╔══╝ ██╔═══██╗ 
