@@ -198,6 +198,8 @@ def YNQ(text):
 def MergeList(List):
     Out=""
     for word in List:
+        if word == "تو" or word == "شما":
+            word="من"
         Out+=word+" "
     return Out
 
