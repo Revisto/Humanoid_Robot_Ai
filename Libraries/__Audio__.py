@@ -18,6 +18,7 @@ import sys
 import numpy
 import csv
 from forecastiopy import *
+
 #-----L I B R A R I E S-----
  
 def MusicPlay(RareInput):
@@ -55,30 +56,14 @@ def Anthems(text="nothing"):
                 return 
     
     TTS(random.choice(["پیدا نکردم","تو انبار نداریم"]),"fa")
-def Analyse(text,DATA):
-    Done=False
-    for i in range (len(DATA)):
-        if Done==True:
-            break
-        for Each_Question in DATA[i][0]:
-            if str(Each_Question) in text:
-                if DATA[i][1]!=[]:
-                    TTS(str(random.choice(DATA[i][1])),"fa")
-                if DATA[i][2]!=[]:
-                    func=random.choice(DATA[i][2])
-                    if len(func)>1:
-                        func[0](random.choice(func[1:len(func)]))
-                    else:
-                        func[0]()
-                Done=True
-                break
-    if Done==False:
-        TTS(random.choice(["متاسفانه متوجهِ منظورتون نِمیشم","متاسفانه متوجه نَشدم","شرمنده متوجه منظورتون نِمیشم","شرمنده متوجهِ نشدم","من دارم یاد میگیرم و متوجهِ منظورتون نِمیشم","متاسفانه نفهمیدم"]),"fa")
 def CompleteVoiceAnalyse():
-    MusicPlay("Click"+"()"+"0.0")
-    audio = GetVoice()
-    MusicPlay("WaitAna"+"()"+"0.0")
-    text = AnalyseVoice(audio)
+    try:
+        MusicPlay("Click"+"()"+"0.0")
+        audio = GetVoice()
+        MusicPlay("WaitAna"+"()"+"0.0")
+        text = AnalyseVoice(audio)
+    except:
+        text=""
     return text
 def GetVoice():    
     mic = sr.Microphone()
@@ -101,8 +86,17 @@ def AllMusicsList():
     return List[0]
 def TTS_Offline(text,language):
     os.system("espeak -v "+'"'+str(language)+'"'+" "+'"'+str(text)+'"'+" "+"-s 20 -g 2")
-def TTS(TEXT,fa):
+def TTS(TEXT,fa="Nothing"):
     doc = requests.get("http://api.farsireader.com/ArianaCloudService/ReadTextGET?APIKey=C6QAXK7BNFEI10M&Text="+TEXT+"&Speaker=Male1&Format=mp3&GainLevel=0&PitchLevel=0&PunctuationLevel=0&SpeechSpeedLevel=-10&ToneLevel=0&Quality=normal&BeginningSilence=0&EndingSilence=0&Base64Encode=0")
     with open('movie.mp3', 'wb') as f:
         f.write(doc.content)
     MusicPlay("movie"+"()کامل")
+def CompleteVoiceAnalysMute():
+    try:
+        audio = GetVoice()
+        text = AnalyseVoice(audio)
+    except:
+        text=""
+    return text
+def IDK():
+    TTS(random.choice(["متاسفانه متوجهِ منظورتون نِمیشم","متاسفانه متوجه نَشدم","شرمنده متوجه منظورتون نِمیشم","شرمنده متوجهِ نشدم","من دارم یاد میگیرم و متوجهِ منظورتون نِمیشم","متاسفانه نفهمیدم"]),"fa")      

@@ -19,7 +19,14 @@ import numpy
 import csv
 from forecastiopy import *
 #-----L I B R A R I E S-----
- 
+from __Audio__ import *
+from __Date_Weather__ import *
+from __Games__ import *
+from __Others__ import *
+from __Prices__ import *
+from __TimingJobs__ import *
+
+
 def Search(text):
     def WhatToSearch(text):
         SplitText=text.split(" ")
@@ -159,4 +166,61 @@ def DATA_function(text,PricesInfo):
                 [["دارو اضافه"],[],[[AddToReminder]]],
                 [["دارو حذف"],[],[[DeleteFromReminder]]],
                 ]
+def Analyse_Function(text,DATA):
+    Done=False
+    for i in range (len(DATA)):
+        if Done==True:
+            break
+        for Each_Question in DATA[i][0]:
+            if str(Each_Question) in text:
+                if DATA[i][1]!=[]:
+                    TTS(str(random.choice(DATA[i][1])),"fa")
+                if DATA[i][2]!=[]:
+                    func=random.choice(DATA[i][2])
+                    if len(func)>1:
+                        func[0](random.choice(func[1:len(func)]))
+                    else:
+                        func[0]()
+                return True
+    return False
+def WHQ(text):
+    WHlist=['چرا','چه','چطور','چه قدر','کجا','کی','چی']
+    for WH in WHlist:
+        if WH in text:
+            return True
+    return False
+def YNQ(text):
+    YNlist=['آیا',"ایا"]
+    for YN in YNlist:
+        if WH in text:
+            return True
+    return False
+def MergeList(List):
+    Out=""
+    for word in List:
+        Out+=word+" "
+    return Out
 
+def Analyse_Closest(text,DataBase):
+    DataTouple=DataBase
+    DataList=[]
+    TextSplit=text.split(" ")
+    for List in DataTouple:
+        RemoveList=list(List)
+        Similarity=0
+        for ClientWord in TextSplit:
+            for DataWord in List:
+                if ClientWord==DataWord:
+                    RemoveList.remove(DataWord)
+                    Similarity+=1
+                    break 
+        DataList.append([Similarity/len(List),DataTouple.index(List),MergeList(RemoveList)])
+    #print (max(DataList))
+    print (DataList)
+    TTS((max(DataList))[2])
+def AddToDataBase(text):
+    FileData=open("___DataBase___.py","a+")
+    List=text.split(" ")
+    print (","+str(List)+"\n")
+    FileData.write(str(","+str(List)))
+    FileData.close()

@@ -17,7 +17,7 @@ from math import sqrt
 import sys
 import numpy
 import csv
-from forecastiopy import *
+from __Audio__ import *
 #-----L I B R A R I E S-----
  
 def GetSomeInfoAboutPrice():

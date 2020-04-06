@@ -17,5 +17,4 @@ from math import sqrt
 import sys
 import numpy
 import csv
-from forecastiopy import *
-print ("RUNNING")
+from imp import reload

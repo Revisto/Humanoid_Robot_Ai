@@ -28,6 +28,7 @@ import sys
 import numpy
 import csv
 from forecastiopy import *
+from imp import reload
 #-----L I B R A R I E S-----
 from __Audio__ import *
 from __Data__ import *
@@ -36,36 +37,31 @@ from __Games__ import *
 from __Others__ import *
 from __Prices__ import *
 from __TimingJobs__ import *
-
-
+import ___DataBase___
+#-----L  O  C  A   L-----
 
 PricesInfo=GetSomeInfoAboutPrice()
-TTS("در خدمتم ","fa")
-Status="Done"
+TTS("در خدمتم","fa")
+
 while True:
-    Status=WakeUp(TimeMustWakeUp,Time_Now_For_WakeUp(),Status)
-    #RimindReminders(ReturnAllReminders(),Time_Now_For_WakeUp())
-    try:
-        text = CompleteVoiceAnalyse()
-        if "بیدار" in text:
-            TimeMustWakeUp=TimeMustWakeUp(text)
-            print (TimeMustWakeUp)
-            Status="NowNow"
-        if "بیدار" not in text:
-            if text!="" and "خاموش" not in text:
-                print (text)
-                Analyse(text,DATA_function(text,PricesInfo))  
-            else:
-                TTS("خاموش" , "fa")
-                while "روشن" not in text:
-                    Status=WakeUp(TimeMustWakeUp,Time_Now_For_WakeUp(),Status)
-                    try:
-                        audio = GetVoice()
-                        text= AnalyseVoice(audio)
-                    except Exception as Error:
-                        print(Error)
-    except Exception as Error:
-        print(Error)
+    reload(___DataBase___)
+    #text=CompleteVoiceAnalyse()
+    text = input("text=")
+    if 'خاموش' in text:
+        while 'روشن' not in text or 'بیدار' not in text:
+            text=CompleteVoiceAnalysMute()
+
+    elif WHQ(text) and text!="":
+        Analyse_Closest(text,___DataBase___.DataBase)
+    
+    
+    elif not(Analyse_Function(text,DATA_function(text,PricesInfo))) and text!="":
+        AddToDataBase(text)
+        #IDK() 
+
+    elif text!="":
+        AddToDataBase(text)
+
 
 
 """
