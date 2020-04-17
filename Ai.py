@@ -30,37 +30,31 @@ import csv
 from forecastiopy import *
 from imp import reload
 #-----L I B R A R I E S-----
-from __Audio__ import *
-from __Data__ import *
-from __Date_Weather__ import *
-from __Games__ import *
-from __Others__ import *
-from __Prices__ import *
-from __TimingJobs__ import *
-import ___DataBase___
+from ___Local___ import *
+import ___DataBase___ 
 #-----L  O  C  A   L-----
 
-PricesInfo=GetSomeInfoAboutPrice()
-TTS("در خدمتم","fa")
+
+Audio().TTS("در خدمتم","fa")
 
 while True:
     reload(___DataBase___)
-    #text=CompleteVoiceAnalyse()
-    text = input("text=")
+    text=Audio().CompleteVoiceAnalyse()
+    #text = input("text=")
     if 'خاموش' in text:
         while 'روشن' not in text or 'بیدار' not in text:
-            text=CompleteVoiceAnalysMute()
+            text=Audio().CompleteVoiceAnalysMute()
 
-    elif WHQ(text) and text!="":
-        Analyse_Closest(text,___DataBase___.DataBase)
+    elif Data().WHQ(text) and text!="" and Data().Analyse_Closest(text,___DataBase___.DataBase):
+        None
     
     
-    elif not(Analyse_Function(text,DATA_function(text,PricesInfo))) and text!="":
-        AddToDataBase(text)
+    elif not(Data().Analyse_Function(text,Data().DATA_function(text))) and text!="":
+        Data().AddToDataBase(text)
         #IDK() 
 
     elif text!="":
-        AddToDataBase(text)
+        Data().AddToDataBase(text)
 
 
 

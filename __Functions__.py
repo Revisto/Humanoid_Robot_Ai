@@ -1,26 +1,14 @@
-import speech_recognition as sr
-import random
-import wikipedia 
-from googletrans import Translator
-import os
-import random
-from persiantools.jdatetime import JalaliDate
-import khayyam
-from time import sleep
-from mpyg321.mpyg321 import MPyg321Player
-from mutagen.mp3 import MP3
-import feedparser
-import mysql.connector as sql
-import requests
-from bs4 import BeautifulSoup
-from math import sqrt
-import sys
-import numpy
-import csv
-from forecastiopy import *
-from __Audio__ import *
+
 #-----L I B R A R I E S-----
- 
+#-----------A  U  D  I  O----------
+#------D  A  T  A-------
+#-----DATE and Weather
+#-------G   a    m    e   s---------
+#---------P r i c e s------------
+#------Timing J O B S----------
+#-------O th e r s-----------
+
+"""
 def Time_Now_For_WakeUp():
     time=(khayyam.JalaliDatetime.now().strftime('%C')).split(" ")
     time=(time[-2])
@@ -165,3 +153,4 @@ def RimindReminders(MainListOfRiminds,Time):
         for little_box in Box:
             AllStr+=(str(little_box)+",")
     Reminders.write(AllStr)
+"""

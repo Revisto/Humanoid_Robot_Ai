@@ -3,8 +3,6 @@ import time
 import Adafruit_PCA9685
 from forecastiopy import *
 
-#-----L I B R A R I E S-----
-
 Locations= {"RighterHand":0,"RightHand":1,"RightArm":2,
 "LefterHand":3,"LeftHand":4,"LeftArm":5,
 "LeftLeg":7,"RightLeg":6,
