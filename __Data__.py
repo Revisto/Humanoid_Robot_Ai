@@ -207,3 +207,13 @@ class Data():
         print (","+str(List)+"\n")
         FileData.write(str(","+str(List)))
         FileData.close()
+
+    def PWD(self):
+        import subprocess
+        proc = subprocess.Popen(["pwd"], stdout=subprocess.PIPE, shell=True)
+        (out, err) = proc.communicate()
+        out=str(out)
+        out=(out[2:len(out)-3])
+        return out
+    
+print (Data().PWD())

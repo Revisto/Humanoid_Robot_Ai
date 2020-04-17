@@ -5,15 +5,23 @@ class Audio():
         MusicName,text=RareInput.split("()")
         print (MusicName,text)
         player = MPyg321Player()       # instanciate the player
-        player.play_song(MusicName+".mp3") # play a song
-        time.sleep(Audio().FindHowMuchToPlay(MusicName,text))               
+        Locations=["/Audios/Songs/","/Audios/Talks/","/Audios/Splitter Voices/","/Audios/Anthems/","/Audios/Podcasts/","/Audios/Poems/"]
+        Pwd=(str(Data().PWD()))
+        for Loc in Locations:
+            Path=Pwd+Loc+MusicName+".mp3"
+            if os.path.exists(Path):
+                print (Path)
+                player.play_song(Path)
+                break
+
+        time.sleep(Audio().FindHowMuchToPlay(Path,text))               
         player.quit()  
     
-    def LenMusic(self,MusicNameNoDotMp3):
-        audio = MP3(MusicNameNoDotMp3+".mp3")
+    def LenMusic(self,MusicNameWithDotMp3):
+        audio = MP3(MusicNameWithDotMp3)
         return audio.info.length
     
-    def FindHowMuchToPlay(self,MusicNameNoDotMp3,text):
+    def FindHowMuchToPlay(self,MusicNameWithDotMp3,text):
         text=text.split(" ")
         Second=""
         for i in range (len(text)):
@@ -23,7 +31,7 @@ class Audio():
             except:
                 None
         if Second=="":
-            return Audio().LenMusic(MusicNameNoDotMp3)
+            return Audio().LenMusic(MusicNameWithDotMp3)
         else:
             return Second
     
@@ -76,9 +84,9 @@ class Audio():
     
     def TTS(self,TEXT,fa="Nothing"):
         doc = requests.get("http://api.farsireader.com/ArianaCloudService/ReadTextGET?APIKey=C6QAXK7BNFEI10M&Text="+TEXT+"&Speaker=Male1&Format=mp3&GainLevel=0&PitchLevel=0&PunctuationLevel=0&SpeechSpeedLevel=-10&ToneLevel=0&Quality=normal&BeginningSilence=0&EndingSilence=0&Base64Encode=0")
-        with open('movie.mp3', 'wb') as f:
+        with open(Data().PWD()+"/Audios/Talks/"+'Talk.mp3', 'wb') as f:
             f.write(doc.content)
-        Audio().MusicPlay("movie"+"()کامل")
+        Audio().MusicPlay("Talk"+"()کامل")
     
     def CompleteVoiceAnalysMute(self):
         try:
