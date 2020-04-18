@@ -7,30 +7,9 @@
  ╚═╝     ╚═╝ ╚═╝  ╚═╝ ╚═╝ ╚═╝  ╚═══╝ ╚═╝ 
 """
 
-
-import speech_recognition as sr
-import random
-import wikipedia 
-from googletrans import Translator
-import os
-import random
-from persiantools.jdatetime import JalaliDate
-import khayyam
-from time import sleep
-from mpyg321.mpyg321 import MPyg321Player
-from mutagen.mp3 import MP3
-import feedparser
-import mysql.connector as sql
-import requests
-from bs4 import BeautifulSoup
-from math import sqrt
-import sys
-import numpy
-import csv
-from forecastiopy import *
 from imp import reload
 #-----L I B R A R I E S-----
-from ___Local___ import *
+from Libraries.___Local___ import *
 import ___DataBase___ 
 #-----L  O  C  A   L-----
 
