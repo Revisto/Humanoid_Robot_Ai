@@ -9,7 +9,7 @@
 
 from imp import reload
 #-----L I B R A R I E S-----
-from Libraries.___Local___ import *
+from ___Local___ import *
 import ___DataBase___ 
 #-----L  O  C  A   L-----
 
