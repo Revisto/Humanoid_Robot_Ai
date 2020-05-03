@@ -1,3 +1,6 @@
+ # Some GodDamn 
+ # L - I - B - R - A - R - I - E - S
+ # _ - _ - _ - _ - _ - _ - _ - _ - _ -
  
 import speech_recognition as sr
 import random
@@ -17,5 +20,6 @@ import sys
 import numpy
 import csv
 from forecastiopy import *
-import time
 from imp import reload
+import json
+import time

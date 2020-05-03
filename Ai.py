@@ -7,21 +7,21 @@
  ╚═╝     ╚═╝ ╚═╝  ╚═╝ ╚═╝ ╚═╝  ╚═══╝ ╚═╝ 
 """
 
-from imp import reload
-#-----L I B R A R I E S-----
+ #-----L I B R A R I E S-----
 from DATA import *
-from Lib.___Local___ import *
-import ___DataBase___ 
 #-----L  O  C  A   L-----
+import ___DataBase___ 
+ # _ - _ - _ - _ - _ - _ - _ - _ - _ -
 
 
-Audio().TTS("در خدمتم","fa")
+#Audio().TTS("در خدمتم","fa")
 
 while True:
     reload(___DataBase___)
-    text=Audio().CompleteVoiceAnalyse()
+    #text=Audio().CompleteVoiceAnalyse()
+    text = input("text=")
     print ("Text : ",text)
-    #text = input("text=")
+    
     if 'خاموش' in text:
         while 'روشن' not in text or 'بیدار' not in text:
             text=Audio().CompleteVoiceAnalysMute()

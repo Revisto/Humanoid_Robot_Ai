@@ -1,3 +1,4 @@
+
 from Lib.___Local___ import *
 
 def DATA_intents(text):
@@ -24,6 +25,7 @@ def DATA_intents(text):
     return {"DATA_intents": [
         
         {"Tag": "Greet",
+        "KeyWords": [],
         "KeyWords": ['چطوره', 'احوالت', 'حالت', 'چطوری', 'خوبی', 'حالت خوبه', 'حالت خوب است'],
         "Answers": ["عالی","خوبم","بهتر از این نمیشه","یِکَم خستم","بهترین"],
         "Actions": [],
@@ -223,7 +225,7 @@ def DATA_intents(text):
         {"Tag": "Price",
         "KeyWords": ['نیم سکه'],
         "Answers": [],
-        "Actions": [[Prices().FullCoinPrice]],
+        "Actions": [[Prices().HalfCoinPrice]],
         },
 
         {"Tag": "Price",
@@ -262,14 +264,6 @@ def DATA_intents(text):
         "Answers": [],
         "Actions": [[Prices().LirPrice]],
         },
-
-
-        {"Tag": "Price",
-        "KeyWords": ['بیتکوین', 'بیت کوین'] ,
-        "Answers": [],
-        "Actions": [[Prices().BitCoinPrice]],
-        },
-
 
         {"Tag": "Calculation",
         "KeyWords": ['جواب', 'مجموع', 'حاصل'] ,

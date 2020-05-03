@@ -255,13 +255,13 @@ class Data():
                 Randeman=0
             DataList.append([Randeman,DataTouple.index(List),Data().MergeList(RemoveList)])
         #print (max(DataList))
-        BestChoice=("In DAta :" ,max(DataList))
-        print (BestChoice)
+        BestChoice=max(DataList)
+        print ( "In DataBase:  " , BestChoice)
         """if float(BestChoice[0])<=0.55:
             return False"""
         
         print (BestChoice[2])
-        # Audio().TTS(BestChoice[2])
+        Audio().TTS(BestChoice[2])
         return True
     
     def AddToDataBase(self,text):
@@ -606,72 +606,62 @@ class Others():
     def EnablePrint(self):
         sys.stdout = sys.__stdout__
 
+
 class Prices():
     def GetSomeInfoAboutPrice(self):
-        url = "https://www.iranjib.ir/showgroup/23/realtime_price/"
-        res = requests.get(url)
-        html_page = res.content
-        soup = BeautifulSoup(html_page, "html.parser",from_encoding="iso-8859-1")
-        text = soup.find_all(text=True)
-        return text
+        doc = requests.get('https://currency.jafari.pw/json')
+        doc=doc.text
+        text = json.loads(doc)
+        Dic={}
+        for i in text:
+            for Box in text[i]:
+                #print (Box)
+                if "Name" in Box:
+                    Dic[Box["Name"]]=Box["Rate"]
+                if "Currency" in Box:
+                    Dic[Box["Currency"]]=Box["Buy"]
+                if "Coin" in Box:
+                    Dic[Box["Coin"]]=Box["Buy"]
+        return Dic
     
     def RobCoin(self):
         text=Prices().GetSomeInfoAboutPrice()
-        Audio().TTS((text[(text.index("  ربع سکه"))+3])+"ریال","fa")
+        Audio().TTS("قیمت ربع سکهْ"+str(text["1/4 Azadi"])+"تومن")
     
     def HalfCoinPrice(self):
         text=Prices().GetSomeInfoAboutPrice()
-        Audio().TTS((text[(text.index("  نیم سکه"))+3])+"ریال","fa")
+        Audio().TTS("قیمت نیم سکهْ"+str(text["1/2 Azadi"])+"تومن")
     
     def FullCoinPrice(self):
         text=Prices().GetSomeInfoAboutPrice()
-        Audio().TTS((text[(text.index("  طرح جدید"))+3])+"ریال","fa")
+        Audio().TTS("قیمت سکه بهار آزادیْ"+str(text["1 Old Azadi"])+"تومن")
     
     def DollarPrice(self):
         text=Prices().GetSomeInfoAboutPrice()
         print (text)
-        Audio().TTS((text[(text.index("  قیمت دلار"))+3])+"ریال","fa")
+        Audio().TTS("قیمت دُلارْ"+str(text["US Dollar"])+"تومن")
     
     def EuroPrice(self):
         text=Prices().GetSomeInfoAboutPrice()
-        Audio().TTS((text[(text.index("  قیمت یورو"))+3])+"ریال","fa")
+        Audio().TTS("قیمت یُرُ"+str(text["Euro"])+"تومن")
     
-    def PondPrice(self):
+    def PondPrice(self): 
         text=Prices().GetSomeInfoAboutPrice()
-        Audio().TTS((text[(text.index("  قیمت پوند انگلیس"))+3])+"ریال","fa")
+        Audio().TTS("قیمت پوند انگلیسْ"+str(text["British Pound"])+"تومن")
     
     def DerhamPrice(self):
         text=Prices().GetSomeInfoAboutPrice()
-        Audio().TTS((text[(text.index("  قیمت درهم"))+3])+"ریال","fa")
+        Audio().TTS("قیمت دِرهمْ"+str(text["UAE Dirham"])+"تومن")
     
     def LirPrice(self):
         text=Prices().GetSomeInfoAboutPrice()
-        Audio().TTS((text[(text.index("  قیمت لیر ترکیه"))+3])+"ریال","fa")
+        Audio().TTS("قیمت لیر ترکیه"+str(text["Turkish Lira"])+"تومن")
     
     def GoldPrice(self):
         text=Prices().GetSomeInfoAboutPrice()
-        Audio().TTS((text[(text.index("  هر گرم طلای 18 عیار"))+3])+"ریال","fa")
+        Audio().TTS("قیمتِ هر گرم طلای ۱۸ عیارْ "+str(text["Gold 18"])+"تومن")
     
-    def BitCoinPrice(self):
-        text=Prices().GetSomeInfoAboutPrice()
-        PriceInDollar=((text[(text.index("  بیت کوین / Bitcoin"))+3]))
-        PriceInDollar=PriceInDollar.split(".")
-        PriceInDollar.append(0)
-        First=PriceInDollar[0].split(",")
-        All=""
-        for i in First:
-            All+=str(i)
-        All=int(All)
-        Doll=((text[(text.index("  قیمت دلار"))+3]))
-        Doll=Doll.split(",")
-        All_=""
-        for i in Doll:
-            All_+=str(i)
-        All_=int(All_)
-        Rial=All_*All
-        Audio().TTS(str(Rial)+"ریال","fa")
         
-
 class Corona():
     def Statistics(self,Application):
         url="https://www.worldometers.info/coronavirus/"
@@ -695,5 +685,14 @@ class Corona():
         return {'Total_Cases' : Total_Cases , 'Total_Deaths' : Total_Deaths , 'Total_Recovered' : Total_Recovered}
 
 
-#(◕‿◕)
+class TimingJobs():
+    def DoTasksAndCleanFile():
+        pass
 
+
+
+
+
+
+
+#(◕‿◕)
