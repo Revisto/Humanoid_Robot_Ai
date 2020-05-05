@@ -7,12 +7,16 @@ from  Lib.___Libraries___ import *
 class Audio():
     def MusicPlay(self,MusicName,text="Full"):
         print (MusicName,text)
-        Others().BlockPrint()
+        #Others().BlockPrint()
         player = MPyg321Player()       # instanciate the player
-        Locations=["","/Audios/Splitter Voices/","/Audios/Talks/","/Audios/Songs/","/Audios/Anthems/","/Audios/Podcasts/","/Audios/Poems/"]
-        Pwd=(str(Data().PWD()))
+        Pwd=(str(Data().PWD())+"/")
+        print ("*/*-+*/*-+/*-*8/*->>"+ " "+ Pwd)
+        Locations=[""]+Data().FindFolders(Pwd+"/Audios")
+        Pwd+="Audios/"
+        print (Locations)
         for Loc in Locations:
-            Path=Pwd+Loc+MusicName+".mp3"
+            Path=Pwd+Loc+"/"+MusicName+".mp3"
+            
             if os.path.exists(Path):
                 print (Path)
                 player.play_song(Path)
@@ -188,10 +192,33 @@ class Data():
     def Analyse_Function(self,text,DATA):
         Rank=[]
         for Box in DATA["DATA_intents"]:
+            NotQualify=False
             Similarity_Keywords=0
-            for keyword in Box["KeyWords"]:
-                if keyword in text:
-                    Similarity_Keywords+=1
+            FirstLayerScore=0
+            SecoundLayerScore=0
+            for MustBekeyword in Box["MustBeKeywords"]:
+                if type(MustBekeyword)==list:
+                    Same=0
+                    for MustBekeywordInList in MustBekeyword:
+
+                        if MustBekeywordInList in text:
+                            Same+=1
+
+                    if Same==0:
+                        NotQualify=True
+                else:
+                    if MustBekeyword not in text:
+                        NotQualify=True
+            if NotQualify==False:
+                for FirstLayerKeyword in Box["FirstLayerKeywords"]:
+                    if FirstLayerKeyword in text:
+                        FirstLayerScore+=1
+                        print (FirstLayerKeyword)
+                if FirstLayerScore!=0:
+                    for SecoundLayerKeyword in Box["SecoundLayerKeywords"]:
+                        if SecoundLayerKeyword in text:
+                            SecoundLayerScore+=1
+                Similarity_Keywords=FirstLayerScore+SecoundLayerScore
             Rank.append([Similarity_Keywords, DATA["DATA_intents"].index(Box)])
             
         BestMatch=(max(Rank))
@@ -200,7 +227,7 @@ class Data():
         
         print ("Same Keywords : ",BestMatch[0])
         print ("the Tag : ",DATA["DATA_intents"][BestMatch[1]]["Tag"])
-        print ("KeyWords : ",DATA["DATA_intents"][BestMatch[1]]["KeyWords"])
+        #print ("KeyWords : ",DATA["DATA_intents"][BestMatch[1]]["KeyWords"])
         print ("Answers : ",DATA["DATA_intents"][BestMatch[1]]["Answers"])
 
         if DATA["DATA_intents"][BestMatch[1]]["Answers"] != []:
@@ -210,6 +237,7 @@ class Data():
             for Box in DATA["DATA_intents"][BestMatch[1]]["Actions"]:
                 Box[0](*Box[1:len(Box)])
 
+        return True
     
     def WHQ(self,text):
         WHlist=['کیه','کدامه','چطوره','چرا' ,'چرا','چه','چطور','چه','کجا','کی','چی','کدام',"چگونه"]
@@ -278,8 +306,34 @@ class Data():
         out=str(out)
         out=(out[2:len(out)-3])
         return out
-    
-    
+
+    def FindFolders(self,path):
+        mypath=path
+        Files_Raw = [f for f in os.listdir(mypath)]
+        #print (Files_Raw)
+        Folders=[]
+        Files=[]
+        for File in Files_Raw:
+            if len(File.split("."))==1:
+                Folders.append(File)
+            else:
+                Files.append(File)
+        return Folders
+
+    def FindFiles(self,path):
+        mypath=path
+        Files_Raw = [f for f in os.listdir(mypath)]
+        #print (Files_Raw)
+        Folders=[]
+        Files=[]
+        for File in Files_Raw:
+            if len(File.split("."))==1:
+                Folders.append(File)
+            else:
+                Files.append(File)       
+        return Files
+
+
 class DateAndWeather():
     def Date(self):
         Months=["فَروَردین","اَردیبِهِشت","خُرداد","تیر","مُرداد","شَهریوَر","مِهر","آبان","آذَر","دِی","بَهمَن","اِسفَند"]
@@ -691,7 +745,7 @@ class TimingJobs():
 
 
 
-
+#print (Data().FindFolders(Data().PWD()+"/Audios"))
 
 
 

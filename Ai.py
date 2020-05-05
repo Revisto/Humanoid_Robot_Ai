@@ -12,12 +12,12 @@ from DATA import *
 #-----L  O  C  A   L-----
 import ___DataBase___ 
  # _ - _ - _ - _ - _ - _ - _ - _ - _ -
-
-
-#Audio().TTS("در خدمتم","fa")
+text="اقتصاد بگو"
+print ((Data().Analyse_Function(text,DATA_intents(text))))
+'''Audio().TTS("در خدمتم","fa")
 
 while True:
-    reload(___DataBase___)
+    reload(___DataBase___) 
     #text=Audio().CompleteVoiceAnalyse()
     text = input("text=")
     print ("Text : ",text)
@@ -37,7 +37,7 @@ while True:
         #IDK() 
 
     elif text!="":
-        Data().AddToDataBase(text)
+        Data().AddToDataBase(text)'''
 
 
 
