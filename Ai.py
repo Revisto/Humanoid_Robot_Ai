@@ -12,11 +12,11 @@ from DATA import *
 #-----L  O  C  A   L-----
 import ___DataBase___ 
  # _ - _ - _ - _ - _ - _ - _ - _ - _ -
-text="اقتصاد بگو"
-print ((Data().Analyse_Function(text,DATA_intents(text))))
-'''Audio().TTS("در خدمتم","fa")
+'''text="اقتصاد بگو"
+print ((Data().Analyse_Function(text,DATA_intents(text))))'''
+Audio().TTS("در خدمتم","fa")
 
-while True:
+if True:
     reload(___DataBase___) 
     #text=Audio().CompleteVoiceAnalyse()
     text = input("text=")
