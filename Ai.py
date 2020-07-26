@@ -16,8 +16,8 @@ import ___DataBase___
 
 while True:
     reload(___DataBase___) 
-    #text=Audio().CompleteVoiceAnalyse()
-    text = input("text=")
+    text=Audio().CompleteVoiceAnalyse()
+    #text = input("text=")
     print ("Text : ",text)
     
     if 'خاموش' in text:
