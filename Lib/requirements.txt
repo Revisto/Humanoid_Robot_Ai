@@ -15,3 +15,4 @@ bs4>=0.0.1
 numpy>=1.19.1
 forecastiopy>=0.22
 PyAudio>=0.2.11
+pexpect>=4.8.0
