@@ -1,0 +1,16 @@
+ # Some GodDamn 
+ # L - I - B - R - A - R - I - E - S
+ # _ - _ - _ - _ - _ - _ - _ - _ - _ -
+ 
+speechrecognition>=3.8.1
+wikipedia>=1.4.0
+googletrans>=3.0.0
+persiantools>=1.4.1
+khayyam>=3.0.17
+mpyg321>=0.0.2
+mutagen>=1.45.0
+feedparser>=5.2.1
+requests>=2.24.0
+bs4>=0.0.1
+numpy>=1.19.1
+forecastiopy>=0.22

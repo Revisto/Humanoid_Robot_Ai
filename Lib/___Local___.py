@@ -622,15 +622,7 @@ class Others():
             return headlines
         allheadlines = []
 
-        def start_db(host, user, passwd, db_name):
-            conn = sql.connect(
-                host="localhost",
-                user="root",
-                passwd="7221974",
-            )
-        for key, url in (category).items():
-            allheadlines.extend(get_headlines(url))
-        #f= open("news.txt","w")
+
         News=[]
         for hl in allheadlines:
             #f.write(str(hl)+"\n")

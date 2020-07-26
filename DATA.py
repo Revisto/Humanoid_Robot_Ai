@@ -2,8 +2,7 @@
 from Lib.___Local___ import *
 
 def DATA_intents(text):
-    Game_List = [
-        'هستی']
+    Game_List = ['هستی']
     
     
     politicsURL = {

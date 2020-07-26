@@ -12,7 +12,6 @@ import khayyam
 from mpyg321.mpyg321 import MPyg321Player
 from mutagen.mp3 import MP3
 import feedparser
-import mysql.connector as sql
 import requests
 from bs4 import BeautifulSoup
 from math import sqrt
@@ -23,3 +22,4 @@ from forecastiopy import *
 from imp import reload
 import json
 import time
+
